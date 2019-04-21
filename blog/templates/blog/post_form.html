@@ -1,12 +1,25 @@
 {% extends "blog/base.html" %}
 {% block content %}
-  <h1>New Post</h1>
-  <form class="post-form" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Upload</button>
-    <button type="submit" class="save btn btn-default">Save</button>
-  </form>
 
-  <script>var editor = new MediumEditor('.editable');</script>
+<section class="header3 cid-rk3zrfx7a4 mbr-parallax-background" id="header3-g">
+  <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(35, 35, 35);">
+  </div>
+
+  <div class="container">
+      <div class="media-container-row">
+          <div class="media-content">
+              <h1 class="mbr-section-title mbr-white pb-3 mbr-fonts-style display-1">New Post</h1>
+              <div class="mbr-section-text mbr-white pb-3 ">
+                    <form class="post-form" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="save btn btn-md btn-primary display-4">Save</button>
+                      </form>
+                    <script>var editor = new MediumEditor('.editable');</script>
+                </div>
+              <br>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

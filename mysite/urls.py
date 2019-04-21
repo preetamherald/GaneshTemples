@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'',include('blog.urls')),
     url(r'account/login/$',views.LoginView.as_view(template_name='registrations/login.html'),name='login'),
-    url(r'account/logout/$',views.LogoutView.as_view(),name='logout',kwargs={'next_page':'/'}),
+    url(r'account/logout/$',views.LogoutView.as_view(template_name='blog/home.html'),name='logout'),
 ]
 
 if settings.DEBUG:

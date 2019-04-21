@@ -112,13 +112,7 @@ def comment_remove(request,pk):
 #         return Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 
 def home(request):
-    recents = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')[:3]
-    highlights = Post.objects.filter(published_date__lte=timezone.now()).order_by('-likes')[:3]
-    context = {
-        'recents': recents,
-        'highlights': highlights,
-    }
-    return render(request, 'blog/home.html', context)
+    return render(request, 'blog/home.html')
 
 def my_image1(request):
     response = redirect('/static/images/main-800x600.jpg/')

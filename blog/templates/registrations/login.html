@@ -1,20 +1,32 @@
 {% extends 'blog/base.html' %}
-
 {% block content %}
 
-<div class="jumbotron">
-  <h2>Please login:</h2>
-  <h3>Super user only</h3>
-  {% if forms.errors %}
-  <p>Your username and password didn't match! Please try again.</p>
-  {% endif %}
 
-  <form action="{% url 'login' %}" method="POST">
-    {% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" class = "btn btn-primary" value="Login">
-      <input type="hidden" name="next" value="{{next}}">
-  </form>
-</div>
+<section class="header3 cid-rk3zrfx7a4 mbr-parallax-background" id="header3-g">
+  <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(35, 35, 35);">
+  </div>
+
+  <div class="container">
+      <div class="media-container-row">
+          <div class="media-content" style="height: 100vh">
+              <h1 class="mbr-section-title mbr-white pb-3 mbr-fonts-style display-1">Login</h1>
+              <div class="mbr-section-text mbr-white pb-3 ">
+                {% if forms.errors %}
+                  <p>Your username and password didn't match! Please try again.</p>
+                {% endif %}
+                <form class="post-form" action="{% url 'login' %}" method="POST">
+                  {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" class = "btn btn-primary" value="Login">
+                    <input type="hidden" name="next" value="{{next}}">
+                </form>
+                <script>var editor = new MediumEditor('.editable');</script>
+              </div>
+              <br>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 {% endblock %}
