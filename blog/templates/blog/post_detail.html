@@ -1,0 +1,173 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+{% load static %}
+
+<section class="step3 cid-rk73YYGHNX" id="step3-q">
+    <div class="container">
+        <h2 class="mbr-section-title pb-3 mbr-fonts-style align-center display-2">
+            {{ post.title }}</h2>
+        <h3 class="mbr-section-subtitle pb-5 mbr-fonts-style align-center display-5">
+            {{ post.tagline }}</h3>
+        <div class="media-container-row">
+            <div class="media-block" style="width: 49%;">
+                <div class="mbr-figure">
+                    <img src="{{ post.photo.url }}">
+                </div>
+            </div>
+            <div class="step-container">
+                <div class="card separline pb-4">
+                    <div class="step-element d-flex">
+                        <div class="step-wrapper pr-3">
+                            <div class="step d-flex align-items-center justify-content-center">
+                                1
+                            </div>
+                        </div>          
+                        <div class="step-text-content">
+                            <h4 class="mbr-step-title pb-3 mbr-fonts-style display-5">Publish Date</h4>
+                            {% if post.published_date %}
+                            <p class="mbr-step-text mbr-fonts-style display-7">
+                                    {{ post.published_date }}
+                            </p>
+                            {% else %}
+                            <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">
+                                <p class="mbr-step-text mbr-fonts-style display-7">
+                                    Publish
+                                </p>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card separline pb-4">
+                    <div class="step-element d-flex">
+                        <div class="step-wrapper pr-3">
+                            <div class="step d-flex align-items-center justify-content-center">
+                                2
+                            </div>
+                        </div>          
+                        <div class="step-text-content">
+                            <h4 class="mbr-step-title pb-3 mbr-fonts-style display-5">Author</h4>
+                            <p class="mbr-step-text mbr-fonts-style display-7">
+                                    {{ post.author }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="">
+                        <div class="">
+                           
+                        </div>          
+                        <div class="step-text-content">
+                            <h4 class="mbr-step-title pb-3 mbr-fonts-style display-5">
+                                <a class="btn btn-sm btn-primary" href="{% url 'like_post' post.id %}" role="button">Like {{ post.likes }}</a>
+                            </h4>
+                             
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="step-container">
+                <div class="card separline pb-4">
+                    <div class="step-element d-flex">         
+                        <div class="step-text-content">
+                            <h4 class="mbr-step-title pb-3 mbr-fonts-style display-5">Story</h4>
+                            <p class="mbr-step-text mbr-fonts-style display-7">
+                                    {{ post.text|safe|linebreaksbr }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            {% if user.is_authenticated %}
+            <a class="btn btn-sm btn-primary" href="{% url 'post_edit' pk=post.pk %}">
+              EDIT
+            </a>
+            <a class="btn btn-sm btn-primary" href="{% url 'post_remove' pk=post.pk %}">
+              REMOVE
+            </a>
+              {% endif %}
+          
+              <hr>
+              <a class="btn btn-sm btn-primary btn-comment" href="{% url 'add_comment_to_post' pk=post.pk %}">Add Comment</a>
+                
+                  <div class="step-container">
+                {% for comment in post.comments.all %}
+                <br>
+
+                    <div class="card separline pb-4">
+                        <div class="step-element d-flex">
+                  {% if user.is_authenticated %}
+                      {% if comment.approved_comment %}
+                      {% endif %}
+          
+                      <div class="step-wrapper pr-3">
+                          <div class="step d-flex align-items-center justify-content-center">+
+                          </div>
+                      </div>
+                      <div class="step-text-content">
+                          <h4 class="mbr-step-title pb-3 mbr-fonts-style display-5">{{ comment.author }}</h4>
+                      
+                      <div class="mbr-step-text mbr-fonts-style display-7">
+                          <b>Posted on:</b> {{ comment.create_date }}
+                          <p>{{ comment.text|safe|linebreaks }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                      {% if not comment.approved_comment %}
+                      <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
+                        Remove
+                      </a>
+                      <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}">
+                        Allow
+                      </a>
+                      {% endif %}
+                      
+          
+                  {% else %}
+                    {% if comment.approved_comment %}
+                    <div class="step-wrapper pr-3">
+                        <div class="step d-flex align-items-center justify-content-center">+
+                        </div>
+                    </div>
+                    <div class="step-text-content">
+                        <h4 class="mbr-step-title pb-3 mbr-fonts-style display-5">{{ comment.author }}</h4>
+                    </div>
+                    <div class="mbr-step-text mbr-fonts-style display-7">
+                        <br>
+                        <p><b>Posted on:</b> {{ comment.create_date }}<br>
+                        {{ comment.text|safe|linebreaks }}</p>
+                      </div>
+                    </div>
+                  </div>
+                    
+                    {% endif %}
+          
+                  {% endif %}
+                {% empty %}
+                <div class="step-wrapper pr-3">
+                    <div class="step d-flex align-items-center justify-content-center">0</div>
+                </div>
+                <div class="step-text-content">
+                    <h4 class="mbr-step-title pb-3 mbr-fonts-style display-5">No Comments!</h4>
+                </div>
+              </div>
+            </div>
+            
+                {% endfor %}
+              </div>
+            </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+{% load static %}
+
+<section class="header1 cid-rk3z1MVHeT" id="header16-f">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-10 align-center">
+                <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">
+                    Stories</h1>
+                
+                <p class="mbr-text pb-3 mbr-fonts-style display-5">
+                    A very very short writeup about the purpose of these stories.</p>
+                
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{% for post in post_list %}
+    <section class="header3 cid-rk3zrfx7a4 mbr-parallax-background" id="header3-g">
+        <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(35, 35, 35);">
+        </div>
+
+        <div class="container">
+            <div class="media-container-row">
+                
+
+                <div class="media-content">
+                    <h1 class="mbr-section-title mbr-white pb-3 mbr-fonts-style display-1">{{ post.title }}</h1>
+                    
+                    <div class="mbr-section-text mbr-white pb-3 ">
+                        <p class="mbr-text mbr-fonts-style display-5"><b>Published on:</b> {{post.published_date |date:"D M Y"}}</p>
+                        <a class="mbr-text mbr-fonts-style display-5" href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approve_comments.count }}</a><br>
+                        <a class="mbr-text mbr-fonts-style display-5" href="{% url 'post_detail' pk=post.pk %}">Likes: {{ post.likes }} </a>
+                    </div>
+                    <div class="mbr-section-btn"><a class="btn btn-md btn-primary display-4" href="{% url 'post_detail' pk=post.pk %}">LEARN MORE</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endfor %}
+
+{% endblock %}

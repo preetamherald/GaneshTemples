@@ -1,0 +1,175 @@
+<!DOCTYPE html>{% load static %}
+<html >
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="{% static "images/logo-130x130.png" %}" type="image/x-icon">
+  <meta name="description" content="">
+  <title>Ganesh Temples</title>
+  <link rel="stylesheet" href="{% static "web/assets/mobirise-icons/mobirise-icons.css" %}">
+  <link rel="stylesheet" href="{% static "tether/tether.min.css" %}">
+  <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
+  <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-grid.min.css" %}">
+  <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-reboot.min.css" %}">
+  <link rel="stylesheet" href="{% static "socicon/css/styles.css" %}">
+  <link rel="stylesheet" href="{% static "animatecss/animate.min.css" %}">
+  <link rel="stylesheet" href="{% static "dropdown/css/style.css" %}">
+  <link rel="stylesheet" href="{% static "theme/css/style.css" %}">
+  <link rel="stylesheet" href="{% static "mobirise/css/mbr-additional.css" %}">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+   -->
+  
+</head>
+<body>
+  <section class="menu cid-qTkzRZLJNu" once="menu" id="menu1-0">
+
+    
+
+    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+        <div class="menu-logo">
+            <div class="navbar-brand">
+                <span class="navbar-logo">
+                    <a href="{% url 'home' %}">
+                         <img src="{% static "images/logo-130x130.png" %}" alt="Ganesha" title="" style="height: 3.8rem;">
+                    </a>
+                </span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="{% url 'home' %}">
+                        GANESH TEMPLES</a></span>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                    
+                <li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="{% url 'temple_list' %}">
+                        <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
+                        Temples</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="{% url 'post_list' %}">
+                    <span class="mbri-bookmark mbr-iconfont mbr-iconfont-btn"></span>
+                        Stories</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li><a class="nav-link link text-white display-4" href="{% url 'post_new' %}">New Post</a>
+                    </li>
+                    <li><a class="nav-link link text-white display-4" href="{% url 'post_draft_list' %}">Drafts</a>
+                    </li>
+                    <li><a class="nav-link link text-white display-4" href="{% url 'logout' %}">Log Out</a>
+                    </li>
+                {% endif %}
+                </ul>
+                {% if user.is_authenticated %}
+                    <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4">Welcome: {{user.username}}</a></div>
+                {% else %} 
+                    <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="{% url 'login' %}">Admin</a></div>
+                {% endif %}
+
+        </div>
+    </nav>
+</section>
+
+                    {% block content %}
+                    {% endblock %}
+
+<section class="cid-qTkAaeaxX5 mbr-reveal" id="footer1-2">
+    <div class="container">
+        <div class="media-container-row content text-white">
+            <div class="col-12 col-md-3">
+                <div class="media-wrap">
+                    <a href="{% url 'home' %}">
+                        <img src="{% static "images/logo-192x192.png" %}" alt="Ganesha" title="">
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 mbr-fonts-style display-7">
+                <h5 class="pb-3">
+                    Latest upload</h5>
+                    {% for recent in recents %}
+                    <a class="text-primary" href="{% url 'post_detail' pk=recent.pk %}">{{ recent.title }}</a>&nbsp;<br>
+                    {% endfor %}
+            </div>
+            <div class="col-12 col-md-3 mbr-fonts-style display-7">
+                <h5 class="pb-3">
+                    Contacts
+                </h5>
+                <p class="mbr-text">
+                    Email: support@Lorem.com
+                    <br>Phone: +91 000 0000 000&nbsp;<br></p>
+            </div>
+            <div class="col-12 col-md-3 mbr-fonts-style display-7">
+                <h5 class="pb-3">
+                    Highlights</h5>
+                <p class="mbr-text">
+                    {% for highlight in highlights %}
+                    <a class="text-primary" href="{% url 'post_detail' pk=highlight.pk %}">{{ highlight.title }}</a>&nbsp;<br>
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+        <div class="footer-lower">
+            <div class="media-container-row">
+                <div class="col-sm-12">
+                    <hr>
+                </div>
+            </div>
+            <div class="media-container-row mbr-white">
+                <div class="col-sm-6 copyright">
+                    <p class="mbr-text mbr-fonts-style display-7">
+                        © Copyright 2019 Ganesh Temples- All Rights Reserved
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="social-list align-right">
+                        <div class="soc-item">
+                            <a href="https://twitter.com" target="_blank">
+                                <span class="socicon-twitter socicon mbr-iconfont mbr-iconfont-social"></span>
+                            </a>
+                        </div>
+                        <div class="soc-item">
+                            <a href="https://www.facebook.com/" target="_blank">
+                                <span class="socicon-facebook socicon mbr-iconfont mbr-iconfont-social"></span>
+                            </a>
+                        </div>
+                        <div class="soc-item">
+                            <a href="https://www.youtube.com/" target="_blank">
+                                <span class="socicon-youtube socicon mbr-iconfont mbr-iconfont-social"></span>
+                            </a>
+                        </div>
+                        
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <script src="{% static "web/assets/jquery/jquery.min.js" %}"></script>
+  <script src="{% static "popper/popper.min.js" %}"></script>
+  <script src="{% static "tether/tether.min.js" %}"></script>
+  <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+  <script src="{% static "smoothscroll/smooth-scroll.js" %}"></script>
+  <script src="{% static "touchswipe/jquery.touch-swipe.min.js" %}"></script>
+  <script src="{% static "viewportchecker/jquery.viewportchecker.js" %}"></script>
+  <script src="{% static "parallax/jarallax.min.js" %}"></script>
+  <script src="{% static "dropdown/js/script.min.js" %}"></script>
+  <script src="{% static "theme/js/script.js" %}"></script>
+  
+  
+ <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i></a></div>
+    <input name="animation" type="hidden">
+  </body>
+</html>
