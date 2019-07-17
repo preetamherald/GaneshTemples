@@ -115,9 +115,9 @@ def home(request):
     return render(request, 'blog/home.html')
 
 def my_image1(request):
-    response = redirect('/static/images/main-800x600.jpg/')
+    response = redirect('https://i.imgur.com/MTOnmcA.png')
     return response
 
 def my_image2(request):
-    response = redirect('/static/images/background4.jpg/')
+    response = redirect('https://i.imgur.com/I87mfUC.jpg')
     return response

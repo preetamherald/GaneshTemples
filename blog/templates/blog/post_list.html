@@ -4,20 +4,25 @@
 {% load static %}
 
 <section class="header1 cid-rk3z1MVHeT" id="header16-f">
-    <div class="container">
-        <div class="row justify-content-md-center">
-            <div class="col-md-10 align-center">
-                <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">
-                    Stories</h1>
-                
-                <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                    A very very short writeup about the purpose of these stories.</p>
-                
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-10 align-center">
+                    {% if post_list.0.isTemple %}
+                    <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">
+                        Temples</h1>
+                    {% else %}
+                    <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">
+                            Stories</h1>
+                    {% endif %}
+                    <p class="mbr-text pb-3 mbr-fonts-style display-5">
+                        A very very short writeup about the purpose of these stories.</p>
+                    
+                </div>
             </div>
         </div>
-    </div>
+    
+    </section>
 
-</section>
 
 {% for post in post_list %}
     <section class="header3 cid-rk3zrfx7a4 mbr-parallax-background" id="header3-g">
