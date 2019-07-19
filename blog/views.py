@@ -115,7 +115,8 @@ def home(request):
     return render(request, 'blog/home.html')
 
 def my_image1(request):
-    response = redirect('https://i.imgur.com/MTOnmcA.png')
+    #response = redirect('https://i.imgur.com/MTOnmcA.png')
+    response = redirect('https://i.imgur.com/qvIzdqN.jpg')
     return response
 
 def my_image2(request):
