@@ -2,7 +2,7 @@ Brotli==1.0.6
 certifi==2019.3.9
 chardet==3.0.4
 dj-database-url==0.5.0
-Django==2.1.7
+Django==3.2.25
 -e git+http://github.com/preetamherald/django-imgur@2741958a9d31593331b0ec22c6c9222b15592ad9#egg=django_imgur
 django-rest-framework==0.1.0
 djangorestframework==3.9.2
